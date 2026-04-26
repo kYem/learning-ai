@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tinted Neutrals — Premium UI Color Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --page-bg: #F4F6FA;
+    --page-text: #0F1520;
+    --page-text2: #3A4560;
+    --page-muted: #7A8BA0;
+    --page-border: #DDE3EE;
+    --page-surface: #FAFBFD;
+    --accent: #2563EB;
+    --accent-subtle: #EEF3FF;
+    --green: #16a34a;
+    --green-bg: #f0fdf4;
+    --amber: #d97706;
+    --amber-bg: #fffbeb;
+    --red: #dc2626;
+    --red-bg: #fef2f2;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--page-bg);
+    color: var(--page-text);
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 24px;
+  }
+
+  /* Header */
+  .hero {
+    text-align: center;
+    padding: 60px 24px;
+    background: linear-gradient(135deg, #0F1520 0%, #1a2744 100%);
+    color: #E8EDF5;
+    border-radius: 16px;
+    margin-bottom: 48px;
+    box-shadow: 0 12px 40px rgba(30,50,100,0.2);
+  }
+  .hero h1 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: -0.03em;
+    color: #fff;
+  }
+  .hero p {
+    font-size: 1.1rem;
+    color: #8A9AB5;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .hero .source {
+    margin-top: 16px;
+    font-size: 0.8rem;
+    color: #5A6A80;
+  }
+
+  /* Sections */
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 48px 0 8px;
+    letter-spacing: -0.02em;
+  }
+  h2 .num {
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .section-subtitle {
+    color: var(--page-muted);
+    margin-bottom: 24px;
+    font-size: 0.95rem;
+  }
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 32px 0 12px;
+  }
+  p { margin-bottom: 16px; }
+
+  /* Cards */
+  .card {
+    background: var(--page-surface);
+    border: 1px solid var(--page-border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(30,50,100,0.06), 0 0 0 1px rgba(30,50,100,0.03);
+  }
+
+  /* Verdict badges */
+  .verdict {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 6px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .verdict.verified { background: var(--green-bg); color: var(--green); }
+  .verdict.partial { background: var(--amber-bg); color: var(--amber); }
+  .verdict.nuanced { background: var(--red-bg); color: var(--red); }
+
+  /* Comparison panels */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 20px 0;
+  }
+  @media (max-width: 700px) { .compare-grid { grid-template-columns: 1fr; } }
+
+  .compare-panel {
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid;
+  }
+  .compare-panel.dead {
+    background: #F8F8F8;
+    border-color: #E5E5E5;
+  }
+  .compare-panel.alive-warm {
+    background: #FDFAF7;
+    border-color: #E8DDD2;
+    box-shadow: 0 1px 3px rgba(100,60,30,0.08), 0 4px 16px rgba(100,60,30,0.06);
+  }
+  .compare-panel.alive-cool {
+    background: #FAFBFD;
+    border-color: #DDE3EE;
+    box-shadow: 0 1px 3px rgba(30,50,100,0.08), 0 4px 16px rgba(30,50,100,0.06);
+  }
+  .compare-panel.alive-dark {
+    background: #161B27;
+    border-color: #1E2738;
+    color: #E8EDF5;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4), 0 0 0 1px rgba(100,140,255,0.06);
+  }
+
+  .panel-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    opacity: 0.6;
+  }
+  .panel-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .panel-body {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    opacity: 0.8;
+  }
+
+  /* Shadow boxes */
+  .dead .shadow-box {
+    background: #FFFFFF;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 12px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #666;
+  }
+  .alive-warm .shadow-box {
+    background: #FDFAF7;
+    box-shadow: 0 1px 3px rgba(100,60,30,0.08), 0 4px 16px rgba(100,60,30,0.1), 0 0 0 1px rgba(100,60,30,0.04);
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 12px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #4A3E34;
+  }
+  .alive-cool .shadow-box {
+    background: #FAFBFD;
+    box-shadow: 0 1px 3px rgba(30,50,100,0.08), 0 4px 16px rgba(30,50,100,0.1), 0 0 0 1px rgba(30,50,100,0.04);
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 12px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #3A4560;
+  }
+  .alive-dark .shadow-box {
+    background: #1C2333;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4), 0 0 0 1px rgba(100,140,255,0.08);
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 12px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #8A9AB5;
+  }
+
+  /* Color token table */
+  .token-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.85rem;
+    margin: 20px 0;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--page-border);
+  }
+  .token-table th {
+    background: #EDF0F7;
+    font-weight: 600;
+    text-align: left;
+    padding: 10px 14px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--page-muted);
+  }
+  .token-table td {
+    padding: 10px 14px;
+    border-top: 1px solid var(--page-border);
+    vertical-align: middle;
+  }
+  .token-table tr:nth-child(even) td {
+    background: #F8FAFD;
+  }
+  .swatch {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    border-radius: 4px;
+    vertical-align: middle;
+    margin-right: 8px;
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+  code {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 0.82rem;
+    background: #EDF0F7;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  /* Insight callouts */
+  .insight {
+    padding: 20px 24px;
+    border-radius: 10px;
+    margin: 20px 0;
+    border-left: 4px solid;
+    font-size: 0.92rem;
+  }
+  .insight.green { background: var(--green-bg); border-color: var(--green); }
+  .insight.amber { background: var(--amber-bg); border-color: var(--amber); }
+  .insight.red { background: var(--red-bg); border-color: var(--red); }
+  .insight strong { font-weight: 600; }
+
+  /* Interactive theme switcher */
+  .theme-demo {
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 24px 0;
+    border: 1px solid var(--page-border);
+  }
+  .theme-tabs {
+    display: flex;
+    background: #EDF0F7;
+  }
+  .theme-tab {
+    flex: 1;
+    padding: 12px 16px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--page-muted);
+    transition: all 0.2s;
+    border: none;
+    background: none;
+    border-bottom: 2px solid transparent;
+  }
+  .theme-tab.active {
+    color: var(--accent);
+    background: var(--page-surface);
+    border-bottom-color: var(--accent);
+  }
+  .theme-tab:hover { color: var(--page-text); }
+  .theme-content { display: none; padding: 32px; }
+  .theme-content.active { display: block; }
+
+  /* Flat/dead theme */
+  .theme-flat { background: #F8F8F8; }
+  .theme-flat .demo-card {
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    padding: 24px;
+    max-width: 380px;
+  }
+  .theme-flat .demo-label { color: #999; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+  .theme-flat .demo-title { color: #000; font-size: 1.2rem; font-weight: 600; margin-bottom: 8px; }
+  .theme-flat .demo-body { color: #666; font-size: 0.9rem; line-height: 1.65; margin-bottom: 16px; }
+  .theme-flat .demo-badge { display: inline-block; background: #EEE; color: #666; font-size: 0.72rem; font-weight: 500; padding: 3px 10px; border-radius: 4px; }
+
+  /* Warm theme */
+  .theme-warm { background: #F7F3EE; }
+  .theme-warm .demo-card {
+    background: #FDFAF7;
+    border: 1px solid #E8DDD2;
+    box-shadow: 0 1px 3px rgba(100,60,30,0.08), 0 4px 16px rgba(100,60,30,0.1), 0 0 0 1px rgba(100,60,30,0.04);
+    border-radius: 8px;
+    padding: 24px;
+    max-width: 380px;
+  }
+  .theme-warm .demo-label { color: #9A8878; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+  .theme-warm .demo-title { color: #1A1410; font-size: 1.2rem; font-weight: 600; margin-bottom: 8px; }
+  .theme-warm .demo-body { color: #4A3E34; font-size: 0.9rem; line-height: 1.65; margin-bottom: 16px; }
+  .theme-warm .demo-badge { display: inline-block; background: #F5EAE4; color: #C4502A; font-size: 0.72rem; font-weight: 500; padding: 3px 10px; border-radius: 4px; }
+
+  /* Cool theme */
+  .theme-cool { background: #F4F6FA; }
+  .theme-cool .demo-card {
+    background: #FAFBFD;
+    border: 1px solid #DDE3EE;
+    box-shadow: 0 1px 3px rgba(30,50,100,0.08), 0 4px 16px rgba(30,50,100,0.1), 0 0 0 1px rgba(30,50,100,0.04);
+    border-radius: 8px;
+    padding: 24px;
+    max-width: 380px;
+  }
+  .theme-cool .demo-label { color: #7A8BA0; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+  .theme-cool .demo-title { color: #0F1520; font-size: 1.2rem; font-weight: 600; margin-bottom: 8px; }
+  .theme-cool .demo-body { color: #3A4560; font-size: 0.9rem; line-height: 1.65; margin-bottom: 16px; }
+  .theme-cool .demo-badge { display: inline-block; background: #EEF3FF; color: #2563EB; font-size: 0.72rem; font-weight: 500; padding: 3px 10px; border-radius: 4px; }
+
+  /* Dark theme */
+  .theme-dark { background: #0F1117; }
+  .theme-dark .demo-card {
+    background: #161B27;
+    border: 1px solid #1E2738;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4), 0 0 0 1px rgba(100,140,255,0.06);
+    border-radius: 8px;
+    padding: 24px;
+    max-width: 380px;
+  }
+  .theme-dark .demo-label { color: #5A6A80; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+  .theme-dark .demo-title { color: #E8EDF5; font-size: 1.2rem; font-weight: 600; margin-bottom: 8px; }
+  .theme-dark .demo-body { color: #8A9AB5; font-size: 0.9rem; line-height: 1.65; margin-bottom: 16px; }
+  .theme-dark .demo-badge { display: inline-block; background: rgba(100,140,255,0.1); color: #5B8DEF; font-size: 0.72rem; font-weight: 500; padding: 3px 10px; border-radius: 4px; }
+
+  /* Greyscale toggle */
+  .greyscale-wrap { text-align: center; margin: 12px 0 0; }
+  .greyscale-btn {
+    background: var(--accent-subtle);
+    color: var(--accent);
+    border: 1px solid rgba(37,99,235,0.15);
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .greyscale-btn:hover { background: var(--accent); color: white; }
+  .greyscale .theme-content { filter: grayscale(100%); }
+
+  /* Color ramp visual */
+  .ramp {
+    display: flex;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 16px 0;
+    height: 48px;
+  }
+  .ramp-step {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+
+  /* Two column layout */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 20px 0;
+  }
+  @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 40px 0;
+    color: var(--page-muted);
+    font-size: 0.82rem;
+    border-top: 1px solid var(--page-border);
+    margin-top: 60px;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<!-- HERO -->
+<div class="hero">
+  <h1>The One Color Decision That Makes UI Look Premium</h1>
+  <p>A deep analysis of tinted neutrals in UI design — what works, what doesn't, and what the research actually says. With live, switchable examples.</p>
+  <div class="source">Based on the Stackademic article by Usman Writes, March 2026 — cross-referenced with design system research</div>
+</div>
+
+<!-- CORE CONCEPT -->
+<h2><span class="num">00</span> The Core Idea</h2>
+<p class="section-subtitle">One sentence that changes how you see every UI</p>
+
+<div class="card">
+  <p style="font-size:1.15rem;font-weight:500;margin-bottom:12px;">Premium UIs never use pure neutrals. Every background, border, shadow, and muted text colour carries a trace of the brand hue — typically just 2-3% saturation.</p>
+  <p style="margin-bottom:0;">This is the difference between a surface that looks <em>assembled from defaults</em> and one that looks <em>designed with intention</em>. Paper has warmth. Packaging has a tint. Fabric has an undertone. Digital surfaces should too.</p>
+</div>
+
+<!-- CLAIM VERIFICATION -->
+<h2><span class="num">01</span> What the Research Says</h2>
+<p class="section-subtitle">We verified every claim against real design systems and academic sources</p>
+
+<div class="card">
+  <div class="verdict verified">Verified</div>
+  <h3>Premium products tint their neutrals</h3>
+  <p><strong>Linear</strong> uses LCH colour space for dynamic theme generation with explicit controls for hue/chroma across tokens. <strong>Stripe</strong> uses perceptually uniform models (CIELAB) for harmonious colour systems. <strong>Raycast</strong> consistently tints surfaces with brand hue.</p>
+  <div class="insight amber"><strong>Exception found:</strong> Vercel's Geist design system explicitly uses pure, untinted greys. Their docs state: the grey ramp has no warm undertones and no cool tints. This is a deliberate "developer neutrality" choice — proving premium can come from typography and spacing alone, not just tinted neutrals.</div>
+</div>
+
+<div class="card">
+  <div class="verdict partial">Emerging Practice</div>
+  <h3>Shadows should carry brand temperature</h3>
+  <p>The idea is sound — coloured shadows feel more natural (real shadows take on ambient light colour). However, this is NOT standard in major design systems. Material Design 3 uses tonal overlays, not tinted shadows. Apple HIG doesn't mention it. Tailwind supports shadow colours but defaults to black. This is a <strong>premium detail</strong>, not an established rule.</p>
+</div>
+
+<div class="card">
+  <div class="verdict verified">Verified</div>
+  <h3>Pure black text causes eye strain</h3>
+  <p>WebAIM research confirms that pure #000000 on #FFFFFF causes eye strain in extended reading. The "halation" effect (white bleeding into dark areas) is especially problematic for users with astigmatism (~33% of the population). Recommended: dark grey in the #111-#1A range with a slight hue shift. All four premium products studied avoid pure black.</p>
+</div>
+
+<div class="card">
+  <div class="verdict verified">Verified</div>
+  <h3>Dark mode should be tinted, not pure black</h3>
+  <p><strong>Apple HIG:</strong> recommends dark grey over pure black to preserve shadow visibility. <strong>Material Design 3:</strong> baseline dark theme uses #121212, not #000000. <strong>Industry consensus:</strong> 2-3% colour saturation in dark backgrounds creates brand coherence without visible tinting. The article's recommended #0F1117 (blue-dark) is well within best practice range.</p>
+</div>
+
+<div class="card">
+  <div class="verdict verified">Verified</div>
+  <h3>The greyscale desaturation test is real</h3>
+  <p>This is a legitimate accessibility technique documented by Pope Tech and WebAIM. It validates that colour isn't carrying structural information (hierarchy should survive without hue). The key insight: tinted neutrals are <strong>aesthetic/cohesion</strong> work, not structural. Your hierarchy must work in pure greyscale first.</p>
+</div>
+
+<div class="card">
+  <div class="verdict verified">Verified</div>
+  <h3>Warm/cool tints feel more premium than flat grey</h3>
+  <p>Backed by colour psychology research. Warm neutrals trigger associations with natural materials (paper, leather, wood) — things we associate with quality. Cool neutrals trigger associations with precision and technology. Pure grey triggers no associations — it reads as "default" or "unfinished." The brain perceives tinted neutrals as <em>intentional</em>.</p>
+</div>
+
+
+<!-- THE THREE PLACES -->
+<h2><span class="num">02</span> The Three Places This Decision Lives</h2>
+<p class="section-subtitle">Backgrounds, shadows, and text — with live comparisons</p>
+
+<h3>A. Tinted Backgrounds vs Flat Grey</h3>
+<p>The difference is only 2-3% hue in every neutral. Side by side, the flat version looks like a spreadsheet. The tinted version looks designed.</p>
+
+<div class="compare-grid">
+  <div class="compare-panel dead">
+    <div class="panel-label">Dead: Pure Neutrals</div>
+    <div class="panel-title" style="color:#000">Monthly Revenue</div>
+    <div class="panel-body" style="color:#666">Growth rate steady at 12% MoM. Retention improving across cohorts.</div>
+    <div class="shadow-box">rgba(0,0,0,0.1) shadow — flat, pasted-on feel</div>
+  </div>
+  <div class="compare-panel alive-warm">
+    <div class="panel-label" style="color:#9A8878">Alive: Warm Tinted</div>
+    <div class="panel-title" style="color:#1A1410">Monthly Revenue</div>
+    <div class="panel-body" style="color:#4A3E34">Growth rate steady at 12% MoM. Retention improving across cohorts.</div>
+    <div class="shadow-box">rgba(100,60,30,0.08) shadow — warm, cohesive</div>
+  </div>
+</div>
+
+<div class="compare-grid">
+  <div class="compare-panel alive-cool">
+    <div class="panel-label" style="color:#7A8BA0">Alive: Cool Tinted</div>
+    <div class="panel-title" style="color:#0F1520">Monthly Revenue</div>
+    <div class="panel-body" style="color:#3A4560">Growth rate steady at 12% MoM. Retention improving across cohorts.</div>
+    <div class="shadow-box">rgba(30,50,100,0.08) shadow — precise, technical</div>
+  </div>
+  <div class="compare-panel alive-dark">
+    <div class="panel-label" style="color:#5A6A80">Dark: Blue-Tinted</div>
+    <div class="panel-title" style="color:#E8EDF5">Monthly Revenue</div>
+    <div class="panel-body" style="color:#8A9AB5">Growth rate steady at 12% MoM. Retention improving across cohorts.</div>
+    <div class="shadow-box">Glow border instead of shadow — same principle, opposite direction</div>
+  </div>
+</div>
+
+
+<h3>B. Shadow Temperature</h3>
+<p>A shadow is the absence of light. Its colour is shaped by the ambient light around the surface. Pure black shadows read as a Photoshop effect. Brand-tinted shadows at very low opacity (6-10%) feel natural.</p>
+
+<div class="two-col">
+  <div class="card" style="text-align:center;">
+    <div style="background:#fff;padding:24px;border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,0.12);margin-bottom:12px;">
+      <span style="font-size:0.9rem;color:#333;">Pure black shadow</span>
+    </div>
+    <code>rgba(0, 0, 0, 0.12)</code>
+    <p style="margin-top:8px;font-size:0.82rem;color:var(--page-muted);">Feels detached, generic</p>
+  </div>
+  <div class="card" style="text-align:center;">
+    <div style="background:#FAFBFD;padding:24px;border-radius:8px;box-shadow:0 1px 3px rgba(37,99,235,0.08), 0 4px 16px rgba(37,99,235,0.06), 0 0 0 1px rgba(37,99,235,0.04);margin-bottom:12px;">
+      <span style="font-size:0.9rem;color:#0F1520;">Blue-tinted shadow</span>
+    </div>
+    <code>rgba(37, 99, 235, 0.06)</code>
+    <p style="margin-top:8px;font-size:0.82rem;color:var(--page-muted);">Feels integrated, intentional</p>
+  </div>
+</div>
+
+<div class="insight green"><strong>The hairline border trick:</strong> Adding <code>0 0 0 1px rgba(brand, 0.04)</code> as a shadow layer creates a subtle border through box-shadow — no border declaration, no layout shift, and it inherits the same temperature as the rest of the stack.</div>
+
+
+<h3>C. Text Colour Hierarchy</h3>
+
+<div class="two-col">
+  <div class="card">
+    <div style="font-weight:600;margin-bottom:12px;font-size:0.8rem;color:var(--page-muted)">FLAT (No Temperature)</div>
+    <p style="color:#000000;font-weight:600;font-size:1.1rem;margin-bottom:4px">Primary: #000000</p>
+    <p style="color:#666666;margin-bottom:4px">Secondary: #666666</p>
+    <p style="color:#999999;font-size:0.9rem">Muted: #999999</p>
+  </div>
+  <div class="card">
+    <div style="font-weight:600;margin-bottom:12px;font-size:0.8rem;color:var(--page-muted)">WARM (Amber-leaning)</div>
+    <p style="color:#1A1614;font-weight:600;font-size:1.1rem;margin-bottom:4px">Primary: #1A1614</p>
+    <p style="color:#4A4440;margin-bottom:4px">Secondary: #4A4440</p>
+    <p style="color:#9A8E85;font-size:0.9rem">Muted: #9A8E85</p>
+  </div>
+</div>
+<div class="two-col">
+  <div class="card">
+    <div style="font-weight:600;margin-bottom:12px;font-size:0.8rem;color:var(--page-muted)">COOL (Blue-leaning)</div>
+    <p style="color:#0F1623;font-weight:600;font-size:1.1rem;margin-bottom:4px">Primary: #0F1623</p>
+    <p style="color:#3D4A5C;margin-bottom:4px">Secondary: #3D4A5C</p>
+    <p style="color:#7B8CA0;font-size:0.9rem">Muted: #7B8CA0</p>
+  </div>
+  <div class="card" style="background:#0F1117;border-color:#1E2738;">
+    <div style="font-weight:600;margin-bottom:12px;font-size:0.8rem;color:#5A6A80">DARK (Blue-dark)</div>
+    <p style="color:#E8EDF5;font-weight:600;font-size:1.1rem;margin-bottom:4px">Primary: #E8EDF5</p>
+    <p style="color:#8A9AB5;margin-bottom:4px">Secondary: #8A9AB5</p>
+    <p style="color:#5A6A80;font-size:0.9rem">Muted: #5A6A80</p>
+  </div>
+</div>
+
+
+<!-- LIVE THEME SWITCHER -->
+<h2><span class="num">03</span> Live Theme Comparison</h2>
+<p class="section-subtitle">Switch between themes to feel the difference. Then hit "Greyscale Test" to verify the hierarchy holds.</p>
+
+<div class="theme-demo" id="themeDemo">
+  <div class="theme-tabs">
+    <button class="theme-tab active" onclick="switchTheme('flat')">Flat / Dead</button>
+    <button class="theme-tab" onclick="switchTheme('warm')">Warm Brand</button>
+    <button class="theme-tab" onclick="switchTheme('cool')">Cool Brand</button>
+    <button class="theme-tab" onclick="switchTheme('dark')">Dark Mode</button>
+  </div>
+
+  <div class="theme-content theme-flat active" id="theme-flat">
+    <div class="demo-card">
+      <div class="demo-label">DESIGN SYSTEM</div>
+      <div class="demo-title">Component Library</div>
+      <div class="demo-body">Pure neutrals. No brand temperature. The card sits on the page but doesn't belong to it. Every surface is disconnected from the brand.</div>
+      <div class="demo-badge">Default</div>
+    </div>
+  </div>
+
+  <div class="theme-content theme-warm" id="theme-warm">
+    <div class="demo-card">
+      <div class="demo-label">DESIGN SYSTEM</div>
+      <div class="demo-title">Component Library</div>
+      <div class="demo-body">Warm amber-leaning neutrals. Every surface carries the brand temperature. Shadows tinted warm. Text hierarchy uses amber undertones.</div>
+      <div class="demo-badge">Warm System</div>
+    </div>
+  </div>
+
+  <div class="theme-content theme-cool" id="theme-cool">
+    <div class="demo-card">
+      <div class="demo-label">DESIGN SYSTEM</div>
+      <div class="demo-title">Component Library</div>
+      <div class="demo-body">Cool blue-leaning neutrals. Every surface carries the brand temperature. Shadows tinted cool. Text hierarchy uses blue-grey undertones.</div>
+      <div class="demo-badge">Cool System</div>
+    </div>
+  </div>
+
+  <div class="theme-content theme-dark" id="theme-dark">
+    <div class="demo-card">
+      <div class="demo-label">DESIGN SYSTEM</div>
+      <div class="demo-title">Component Library</div>
+      <div class="demo-body">Navy-dark backgrounds, not pure black. Cool-leaning off-white text. Glows instead of shadows. The same brand hue runs through every surface.</div>
+      <div class="demo-badge">Dark System</div>
+    </div>
+  </div>
+
+  <div class="greyscale-wrap">
+    <button class="greyscale-btn" id="greyBtn" onclick="toggleGreyscale()">Greyscale Test (verify hierarchy holds)</button>
+  </div>
+</div>
+
+
+<!-- FULL TOKEN SYSTEMS -->
+<h2><span class="num">04</span> Complete Token Systems</h2>
+<p class="section-subtitle">Copy-paste ready CSS custom properties for warm, cool, and dark themes</p>
+
+<h3>Warm Brand (Editorial, Fintech, Premium SaaS)</h3>
+<div class="ramp">
+  <div class="ramp-step" style="background:#F7F3EE;color:#4A3E34">bg</div>
+  <div class="ramp-step" style="background:#FDFAF7;color:#4A3E34">surface</div>
+  <div class="ramp-step" style="background:#F2EDE6;color:#4A3E34">surface-2</div>
+  <div class="ramp-step" style="background:#E8DDD2;color:#4A3E34">border</div>
+  <div class="ramp-step" style="background:#C8B8A8;color:#fff">border-strong</div>
+  <div class="ramp-step" style="background:#9A8878;color:#fff">muted</div>
+  <div class="ramp-step" style="background:#4A3E34;color:#fff">text-2</div>
+  <div class="ramp-step" style="background:#1A1410;color:#fff">text</div>
+  <div class="ramp-step" style="background:#C4502A;color:#fff">brand</div>
+</div>
+
+<h3>Cool Brand (Dev Tools, Analytics, B2B)</h3>
+<div class="ramp">
+  <div class="ramp-step" style="background:#F4F6FA;color:#3A4560">bg</div>
+  <div class="ramp-step" style="background:#FAFBFD;color:#3A4560">surface</div>
+  <div class="ramp-step" style="background:#EDF0F7;color:#3A4560">surface-2</div>
+  <div class="ramp-step" style="background:#DDE3EE;color:#3A4560">border</div>
+  <div class="ramp-step" style="background:#BCC6DA;color:#fff">border-strong</div>
+  <div class="ramp-step" style="background:#7A8BA0;color:#fff">muted</div>
+  <div class="ramp-step" style="background:#3A4560;color:#fff">text-2</div>
+  <div class="ramp-step" style="background:#0F1520;color:#fff">text</div>
+  <div class="ramp-step" style="background:#2563EB;color:#fff">brand</div>
+</div>
+
+<h3>Dark Mode (Blue-tinted)</h3>
+<div class="ramp">
+  <div class="ramp-step" style="background:#0F1117;color:#5A6A80">bg</div>
+  <div class="ramp-step" style="background:#161B27;color:#5A6A80">surface</div>
+  <div class="ramp-step" style="background:#1C2333;color:#5A6A80">surface-2</div>
+  <div class="ramp-step" style="background:#1E2738;color:#8A9AB5">border</div>
+  <div class="ramp-step" style="background:#2A3650;color:#8A9AB5">border-strong</div>
+  <div class="ramp-step" style="background:#5A6A80;color:#E8EDF5">muted</div>
+  <div class="ramp-step" style="background:#8A9AB5;color:#0F1117">text-2</div>
+  <div class="ramp-step" style="background:#E8EDF5;color:#0F1117">text</div>
+  <div class="ramp-step" style="background:#5B8DEF;color:#fff">brand</div>
+</div>
+
+<table class="token-table">
+  <thead>
+    <tr>
+      <th>Token</th>
+      <th>Warm</th>
+      <th>Cool</th>
+      <th>Dark</th>
+      <th>Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>--color-bg</code></td>
+      <td><span class="swatch" style="background:#F7F3EE"></span>#F7F3EE</td>
+      <td><span class="swatch" style="background:#F4F6FA"></span>#F4F6FA</td>
+      <td><span class="swatch" style="background:#0F1117;border-color:rgba(255,255,255,0.1)"></span>#0F1117</td>
+      <td>Page background</td>
+    </tr>
+    <tr>
+      <td><code>--color-surface</code></td>
+      <td><span class="swatch" style="background:#FDFAF7"></span>#FDFAF7</td>
+      <td><span class="swatch" style="background:#FAFBFD"></span>#FAFBFD</td>
+      <td><span class="swatch" style="background:#161B27;border-color:rgba(255,255,255,0.1)"></span>#161B27</td>
+      <td>Card, panel</td>
+    </tr>
+    <tr>
+      <td><code>--color-border</code></td>
+      <td><span class="swatch" style="background:#E8DDD2"></span>#E8DDD2</td>
+      <td><span class="swatch" style="background:#DDE3EE"></span>#DDE3EE</td>
+      <td><span class="swatch" style="background:#1E2738;border-color:rgba(255,255,255,0.1)"></span>#1E2738</td>
+      <td>Dividers, outlines</td>
+    </tr>
+    <tr>
+      <td><code>--color-text</code></td>
+      <td><span class="swatch" style="background:#1A1410"></span>#1A1410</td>
+      <td><span class="swatch" style="background:#0F1520"></span>#0F1520</td>
+      <td><span class="swatch" style="background:#E8EDF5"></span>#E8EDF5</td>
+      <td>Primary text</td>
+    </tr>
+    <tr>
+      <td><code>--color-text-2</code></td>
+      <td><span class="swatch" style="background:#4A3E34"></span>#4A3E34</td>
+      <td><span class="swatch" style="background:#3A4560"></span>#3A4560</td>
+      <td><span class="swatch" style="background:#8A9AB5"></span>#8A9AB5</td>
+      <td>Body text</td>
+    </tr>
+    <tr>
+      <td><code>--color-text-muted</code></td>
+      <td><span class="swatch" style="background:#9A8878"></span>#9A8878</td>
+      <td><span class="swatch" style="background:#7A8BA0"></span>#7A8BA0</td>
+      <td><span class="swatch" style="background:#5A6A80;border-color:rgba(255,255,255,0.1)"></span>#5A6A80</td>
+      <td>Labels, captions</td>
+    </tr>
+    <tr>
+      <td><code>--color-brand</code></td>
+      <td><span class="swatch" style="background:#C4502A"></span>#C4502A</td>
+      <td><span class="swatch" style="background:#2563EB"></span>#2563EB</td>
+      <td><span class="swatch" style="background:#5B8DEF"></span>#5B8DEF</td>
+      <td>CTA, links, accents</td>
+    </tr>
+    <tr>
+      <td><code>--color-brand-subtle</code></td>
+      <td><span class="swatch" style="background:#F5EAE4"></span>#F5EAE4</td>
+      <td><span class="swatch" style="background:#EEF3FF"></span>#EEF3FF</td>
+      <td><span class="swatch" style="background:rgba(100,140,255,0.1);border-color:rgba(255,255,255,0.1)"></span>rgba(...,0.1)</td>
+      <td>Badges, highlights</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<!-- WHAT THE ARTICLE MISSED -->
+<h2><span class="num">05</span> What the Article Missed</h2>
+<p class="section-subtitle">Techniques and nuances not covered, found during research</p>
+
+<div class="two-col">
+  <div class="card">
+    <h3 style="margin-top:0">Perceptually Uniform Colour Spaces</h3>
+    <p>Stripe uses CIELAB/Lab colour models. Linear uses LCH. These ensure that equal numeric steps produce equal perceived differences — unlike HSL where "10% lighter" looks different for blue vs yellow. Modern approach: generate your tinted neutral ramp in OKLCH, not HSL.</p>
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0">Tonal Elevation (Material Design 3)</h3>
+    <p>Instead of tinted shadows, Material 3 uses semi-transparent primary colour overlays on surfaces to indicate depth. Higher elevation = more primary colour tint. Different mechanism, same goal: brand coherence through depth.</p>
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0">Semantic Tokens Over Raw Values</h3>
+    <p>The article uses raw hex values. Production design systems use semantic tokens: <code>--surface-primary</code>, <code>--border-subtle</code>. This decouples the meaning from the value, making theme switching and accessibility overrides much easier.</p>
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0">The Vercel Counter-Example</h3>
+    <p>Vercel's Geist system deliberately uses pure, untinted greys — proving that premium feel can come from typography, spacing, and layout quality alone. Tinted neutrals are a powerful tool, not the only tool. Don't cargo-cult them.</p>
+  </div>
+</div>
+
+
+<!-- THREE RULES -->
+<h2><span class="num">06</span> Three Rules (That Actually Hold Up)</h2>
+<p class="section-subtitle">Verified against real design systems and research</p>
+
+<div class="card" style="border-left: 4px solid var(--green); padding-left: 20px;">
+  <p style="font-weight:600;margin-bottom:6px;">1. Never use a pure neutral in production.</p>
+  <p style="margin-bottom:0;">#FFFFFF, #000000, #808080 belong to no brand. Every neutral carries a hue — even if just 2%. Your background doesn't need to shout the brand colour. It just needs to lean that direction.</p>
+</div>
+
+<div class="card" style="border-left: 4px solid var(--green); padding-left: 20px;">
+  <p style="font-weight:600;margin-bottom:6px;">2. Match shadow temperature to brand temperature.</p>
+  <p style="margin-bottom:0;">Blue brand = blue-tinted shadows. Warm brand = amber-tinted shadows. Keep opacity very low (4-10%). Add the <code>0 0 0 1px</code> hairline border layer. This is an emerging practice — not yet standard — but the products that do it look noticeably more polished.</p>
+</div>
+
+<div class="card" style="border-left: 4px solid var(--green); padding-left: 20px;">
+  <p style="font-weight:600;margin-bottom:6px;">3. Tint every interactive state, and always test in greyscale.</p>
+  <p style="margin-bottom:0;">Hover, focus, active — use brand-subtle tints, not flat grey overlays. Then desaturate to greyscale. If your hierarchy breaks without colour, the tints were carrying structural weight they shouldn't be.</p>
+</div>
+
+
+<div class="footer">
+  Based on "The One Color Decision That Makes a UI Look Expensive" by Usman Writes (Stackademic, March 2026). Research verified against Apple HIG, Material Design 3, Stripe Design Systems, Linear, Vercel Geist, WebAIM, and colour psychology literature. April 2026.
+</div>
+
+</div>
+
+<script>
+function switchTheme(theme) {
+  document.querySelectorAll('.theme-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.theme-tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('theme-' + theme).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function toggleGreyscale() {
+  const demo = document.getElementById('themeDemo');
+  const btn = document.getElementById('greyBtn');
+  demo.classList.toggle('greyscale');
+  btn.textContent = demo.classList.contains('greyscale')
+    ? 'Remove Greyscale (restore colour)'
+    : 'Greyscale Test (verify hierarchy holds)';
+}
+</script>
+
+</body>
+</html>
