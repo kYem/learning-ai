@@ -14,7 +14,7 @@
   "scripts": {
     "quartz": "./quartz/bootstrap-cli.mjs",
     "build": "./quartz/bootstrap-cli.mjs build",
-    "serve": "./quartz/bootstrap-cli.mjs build --serve",
+    "serve": "./quartz/bootstrap-cli.mjs build --serve --port 4444",
     "check": "tsc --noEmit && npx prettier . --check",
     "format": "npx prettier . --write",
     "test": "tsx --test",
